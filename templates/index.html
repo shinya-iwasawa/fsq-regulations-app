@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FSQ Regulations PoC</title>
+  <style>
+    :root{
+      --bg: #f4f7f9;
+      --panel: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --line: #e5e7eb;
+      --accent: #16a34a;
+      --warn: #f97316;
+      --bad: #dc2626;
+      --btn: #2563eb;
+      --btn2: #1d4ed8;
+      --shadow: 0 4px 14px rgba(0,0,0,.05);
+      --radius: 12px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Hiragino Kaku Gothic ProN", Meiryo, "Noto Sans JP", sans-serif;
+      background: var(--bg);
+      color:var(--text);
+    }
+    a{color:inherit}
+    .wrap{
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 24px 16px 40px;
+    }
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom: 18px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 18px;
+    }
+    .brand{
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+    }
+    .brand h1{
+      margin:0;
+      font-size: 20px;
+      letter-spacing:.2px;
+    }
+    .brand .sub{
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      background: #ffffff;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:16px;
+    }
+    @media (max-width: 900px){
+      .grid{grid-template-columns:1fr}
+    }
+    .card{
+      background: #ffffff;
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .card .hd{
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--line);
+      background: #f9fafb;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
+    .card .hd .ttl{
+      margin:0;
+      font-size: 14px;
+      letter-spacing:.2px;
+      font-weight: 600;
+    }
+    .card .bd{
+      padding: 16px;
+    }
+    label{
+      display:block;
+      font-size: 12px;
+      color: var(--muted);
+      margin: 10px 0 6px;
+      font-weight: 600;
+    }
+    textarea, select, input[type="text"], input[type="url"], input[type="file"]{
+      width:100%;
+      padding: 12px 12px;
+      border-radius: 8px;
+      border: 1px solid #d1d5db;
+      outline:none;
+      background: #ffffff;
+      color: var(--text);
+    }
+    textarea:focus, select:focus, input:focus {
+        border-color: var(--btn);
+        box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+    }
+    textarea{min-height: 170px; resize: vertical; line-height:1.6;}
+    .row{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 560px){
+      .row{grid-template-columns:1fr}
+    }
+    .actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top: 14px;
+    }
+    .btn{
+      appearance:none;
+      border:none;
+      cursor:pointer;
+      border-radius: 8px;
+      padding: 11px 16px;
+      font-weight: 700;
+      color: #ffffff;
+      background: var(--btn);
+    }
+    .btn:hover{filter:brightness(1.1)}
+    .btn.secondary{
+      background: #f3f4f6;
+      color: #374151;
+      border: 1px solid #e5e7eb;
+    }
+    .hint{
+      margin-top: 10px;
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .note{
+      padding: 12px 16px;
+      border-radius: 12px;
+      border:1px solid var(--line);
+      background: #f9fafb;
+      color: var(--muted);
+      font-size: 12px;
+      line-height:1.7;
+    }
+
+    /* ===== Result screen ===== */
+    .result-top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom: 14px;
+    }
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 9px 12px;
+      border-radius: 999px;
+      border:1px solid var(--line);
+      background: #f3f4f6;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .judge{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding: 16px;
+      border-radius: 14px;
+      border:1px solid var(--line);
+      background: #f9fafb;
+    }
+    .judge .label{
+      font-size: 12px;
+      color: var(--muted);
+      margin:0;
+    }
+    .judge .value{
+      font-size: 20px;
+      font-weight: 900;
+      margin:0;
+      letter-spacing:.2px;
+    }
+    .judge.ok { border-color: var(--accent); background: #f0fdf4; }
+    .judge.ok .value{color: var(--accent)}
+    .judge.warn { border-color: var(--warn); background: #fffbeb; }
+    .judge.warn .value{color: var(--warn)}
+    .judge.bad { border-color: var(--bad); background: #fef1f2; }
+    .judge.bad .value{color: var(--bad)}
+    .section{
+      margin-top: 20px;
+      border-top: 1px solid var(--line);
+      padding-top: 20px;
+    }
+    .section h3{
+      margin:0 0 10px;
+      font-size: 14px;
+      letter-spacing:.2px;
+      font-weight: 600;
+    }
+    .pre{
+      white-space: pre-wrap;
+      word-break: break-word;
+      line-height: 1.7;
+      font-size: 13px;
+      color: #374151;
+      background: #f9fafb;
+      border:1px solid var(--line);
+      border-radius: 12px;
+      padding: 12px;
+    }
+    .src-list{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+    .src-item{
+      border:1px solid var(--line);
+      border-radius: 12px;
+      padding: 12px;
+      background: #ffffff;
+    }
+    .src-item:hover {
+        border-color: #d1d5db;
+    }
+    .src-item .top{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom: 6px;
+    }
+    .src-item .name{
+      font-weight: 600;
+      font-size: 13px;
+      margin:0;
+    }
+    .src-item .name a{
+      color: var(--btn);
+      text-decoration: none;
+    }
+    .src-item .name a:hover{
+      text-decoration: underline;
+    }
+    .src-item .meta{
+      font-size: 12px;
+      color: var(--muted);
+      margin:0;
+    }
+    footer{
+      margin-top: 24px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+      font-size: 12px;
+      color: var(--muted);
+      text-align:center;
+    }
+    /* ===== Result Table ===== */
+    .result-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      font-size: 13px;
+    }
+    .result-table th, .result-table td {
+      border: 1px solid var(--line);
+      padding: 10px 12px;
+      text-align: left;
+      vertical-align: top;
+    }
+    .result-table th {
+      background: #f9fafb;
+      font-weight: 600;
+    }
+    .result-table td:first-child {
+      font-weight: 500;
+    }
+    .result-table .no-results {
+        text-align: center;
+        color: var(--muted);
+        padding: 20px;
+    }
+    .status-badge {
+      display: inline-block;
+      padding: 3px 9px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+    .status-badge.ok {
+      color: #166534;
+      background: #dcfce7;
+    }
+    .status-badge.warn {
+      color: #9a3412;
+      background: #ffedd5;
+    }
+    .status-badge.bad {
+      color: #991b1b;
+      background: #fee2e2;
+    }
+    .japanese-title {
+        font-size: 12px;
+        color: var(--muted);
+        margin-left: 8px;
+        font-weight: 400;
+    }
+    .snippet-container {
+        margin-top: 12px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+    }
+    .snippet-block h4 {
+        font-size: 11px;
+        color: var(--muted);
+        font-weight: 600;
+        margin: 0 0 4px;
+        text-transform: uppercase;
+    }
+    .snippet-text {
+        font-size: 12px !important;
+        background: #f3f4f6 !important;
+    }
+    @media (max-width: 640px) {
+        .snippet-container { grid-template-columns: 1fr; }
+    }
+    .hidden{display:none !important;}
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <h1>FSQ Regulations PoC</h1>
+        <div class="sub">規制判定（PoC）｜入力 → 判定 → 参照条文リンク</div>
+      </div>
+      <div class="pill">Flask / Jinja2 テンプレート</div>
+    </header>
+
+    {# =========================================================
+       Screen A: Input
+       - 初期表示：こちら
+       - 判定後：Screen Bへ遷移（resultを表示）
+       ========================================================= #}
+
+    <section id="screen-input" class="{% if result %}hidden{% endif %}">
+      <div class="grid">
+        <div class="card">
+          <div class="hd">
+            <p class="ttl">入力</p>
+            <span class="pill">Step 1</span>
+          </div>
+          <div class="bd">
+            <form id="judge-form" method="post" action="/judge">
+              <div class="row">
+                <div>
+                  <label for="country">対象国</label>
+                  <select id="country" name="country" required>
+                    <option value="" disabled {% if not (form_country or '') %}selected{% endif %}>選択してください</option>
+                    <option value="malaysia" {% if form_country=='malaysia' %}selected{% endif %}>マレーシア</option>
+                    <option value="singapore" {% if form_country=='singapore' %}selected{% endif %}>シンガポール</option>
+                    <option value="thailand" {% if form_country=='thailand' %}selected{% endif %}>タイ</option>
+                    <option value="indonesia" {% if form_country=='indonesia' %}selected{% endif %}>インドネシア</option>
+                    <option value="philippines" {% if form_country=='philippines' %}selected{% endif %}>フィリピン</option>
+                    <option value="vietnam" {% if form_country=='vietnam' %}selected{% endif %}>ベトナム</option>
+                    <option value="other" {% if form_country=='other' %}selected{% endif %}>その他</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="mode">判定モード</label>
+                  <select id="mode" name="mode">
+                    <option value="ingredients" {% if form_mode=='ingredients' %}selected{% endif %}>原材料テキスト</option>
+                    <option value="pdf" {% if form_mode=='pdf' %}selected{% endif %}>PDF（本文抽出）</option>
+                    <option value="both" {% if form_mode=='both' %}selected{% endif %}>両方</option>
+                  </select>
+                </div>
+              </div>
+
+              <label for="ingredients">原材料（入力）</label>
+              <textarea id="ingredients" name="ingredients" placeholder="例）魚肉（輸入）、卵白、かにエキス、食塩、鶏卵、でん粉（小麦を含む）…">{{ form_ingredients or '' }}</textarea>
+
+              <div class="hint">
+                ・PoC段階のため、<b>最終判断は必ず原文（法令/条文/ガイド）をご確認</b>ください。<br>
+                ・PDF判定を使う場合は、サーバ側でPDF本文抽出が必要です（未実装なら“判断不可”になり得ます）。
+              </div>
+
+              <div class="actions">
+                <button class="btn" type="submit">判定する →</button>
+                <button class="btn secondary" type="button" id="fill-sample">サンプル入力</button>
+                <button class="btn secondary" type="button" id="open-json-hint">body_multi.json 参考</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="hd">
+            <p class="ttl">使い方 / 期待する出力</p>
+            <span class="pill">Step 0</span>
+          </div>
+          <div class="bd">
+            <div class="note">
+              <b>この画面</b>で原材料を入力 → <b>判定する</b> → <b>結果画面（第2画面）</b>に遷移して、<br>
+              「判定結果 / 判定理由 / 参照条文・根拠（リンク）」を表示します。<br><br>
+              <b>参照ソース</b>は、<u>ソース名をクリックするとURLを開ける</u>仕様です（現段階の“完璧”ポイント）。
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {# =========================================================
+       Screen B: Result (Second screen)
+       ========================================================= #}
+    <section id="screen-result" class="{% if not result %}hidden{% endif %}">
+      <div class="card">
+        <div class="hd">
+          <p class="ttl">判定結果</p>
+          <div class="actions" style="margin:0;">
+            <button class="btn secondary" type="button" id="back-to-input">← 入力に戻る</button>
+          </div>
+        </div>
+        <div class="bd">
+
+          <div class="result-top">
+            <div class="badge">
+              対象国：<b>{{ result.country_name if result else (form_country or '-') }}</b>
+            </div>
+            <div class="badge">
+              生成時刻：<b>{{ result.generated_at if result else '-' }}</b>
+            </div>
+          </div>
+
+          {# --- 総合判定 --- #}
+          {% if result %}
+            {% set _status = result.overall_status %}
+            {% set _cls = 'warn' %}
+            {% if _status in ['OK','可'] %}{% set _cls = 'ok' %}{% endif %}
+            {% if _status in ['NG','不可', 'エラー'] %}{% set _cls = 'bad' %}{% endif %}
+            <div class="judge {{ _cls }}">
+              <p class="label">総合判定</p>
+              <p class="value">{{ result.overall_status }}</p>
+            </div>
+          {% endif %}
+
+          {# --- 個別判定結果テーブル --- #}
+          <div class="section">
+            <h3>個別判定結果</h3>
+            <table class="result-table">
+              <thead>
+                <tr>
+                  <th>入力原料</th>
+                  <th>判定</th>
+                  <th>理由</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% if result and result.results %}
+                  {% for item in result.results %}
+                    <tr>
+                      <td>{{ item.name }}</td>
+                      <td>
+                        {% set item_cls = 'warn' %}
+                        {% if item.status in ['OK','可'] %}{% set item_cls = 'ok' %}{% endif %}
+                        {% if item.status in ['NG','不可', 'エラー'] %}{% set item_cls = 'bad' %}{% endif %}
+                        <span class="status-badge {{ item_cls }}">{{ item.status }}</span>
+                      </td>
+                      <td>{{ item.reason }}</td>
+                    </tr>
+                  {% endfor %}
+                {% else %}
+                  <tr>
+                    <td colspan="3" class="no-results">結果がありません。</td>
+                  </tr>
+                {% endif %}
+              </tbody>
+            </table>
+          </div>
+
+
+          {# --- 参照条文・根拠 --- #}
+          <div class="section">
+            <h3>参照条文・根拠（クリックで開く）</h3>
+            {% if result and result.sources and result.sources|length > 0 %}
+              <div class="src-list">
+                {% for s in result.sources %}
+                  <div class="src-item">
+                    <div class="top">
+                      <p class="name">
+                        {{ s.title or '参照ソース' }}
+                        <span class="japanese-title">（{{ s.title_ja or '日本語訳なし' }}）</span>
+                      </p>
+                      <p class="meta">
+                        {% if s.article %}条文: {{ s.article }}{% endif %}
+                      </p>
+                    </div>
+                    <div class="snippet-container">
+                      <div class="snippet-block">
+                        <h4 class="snippet-title">原文 (Original)</h4>
+                        <div class="pre snippet-text">{{ s.snippet_en or 'N/A' }}</div>
+                      </div>
+                      <div class="snippet-block">
+                        <h4 class="snippet-title">日本語訳 (Japanese)</h4>
+                        <div class="pre snippet-text">{{ s.snippet_ja or 'N/A' }}</div>
+                      </div>
+                    </div>
+                  </div>
+                {% endfor %}
+              </div>
+            {% else %}
+              <div class="pre">参照情報がありません（または抽出に失敗しました）。</div>
+            {% endif %}
+          </div>
+
+          <div class="section">
+            <h3>入力（参考表示）</h3>
+            <div class="pre">{{ result.input_text if result else (form_ingredients or '') }}</div>
+          </div>
+
+          <div class="section">
+            <div class="note">
+              ※ 本回答は参考情報です。必ず原文をご確認ください。<br>
+              PoC段階では、PDF本文抽出が失敗すると「判断不可」になり得ます。
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      FSQ Regulations PoC / UI Template (index.html)
+    </footer>
+  </div>
+
+  <script>
+    // ------- Input helpers -------
+    const fillBtn = document.getElementById('fill-sample');
+    if (fillBtn) {
+      fillBtn.addEventListener('click', () => {
+        const ta = document.getElementById('ingredients');
+        const sel = document.getElementById('country');
+        if (sel && !sel.value) sel.value = 'malaysia';
+        if (ta && !ta.value.trim()) {
+          ta.value = '魚肉（輸入）、卵白、かにエキス、食塩、鶏卵、でん粉（小麦を含む）、植物油（大豆を含む）／加工でん粉、調味料（有機酸等）、トレハロース、V.C、pH調整剤、香料、トマト色素、パプリカ色素';
+        }
+      });
+    }
+
+    // body_multi.json のヒント（実運用はFlask側でstatic配信でもOK）
+    const jsonHintBtn = document.getElementById('open-json-hint');
+    if (jsonHintBtn) {
+      jsonHintBtn.addEventListener('click', () => {
+        alert('body_multi.json を参照するなら、Flask側で /static/body_multi.json に置く or ルートを作るのが早いです。\n例）/static/body_multi.json をブラウザで開く');
+      });
+    }
+
+    // ------- Second screen back navigation -------
+    const backBtn = document.getElementById('back-to-input');
+    if (backBtn) {
+      backBtn.addEventListener('click', () => {
+        // 画面遷移（SPA風）：結果を隠して入力を表示
+        const input = document.getElementById('screen-input');
+        const result = document.getElementById('screen-result');
+        if (result) result.classList.add('hidden');
+        if (input) input.classList.remove('hidden');
+
+        // URLの#も整理（任意）
+        history.replaceState(null, '', location.pathname);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+  </script>
+</body>
+</html>

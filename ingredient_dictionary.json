@@ -1,0 +1,125 @@
+{
+  "かにエキス": { "normalized": "crab extract" },
+  "カニエキス": { "normalized": "crab extract" },
+  "えびエキス": { "normalized": "shrimp extract" },
+  "エビエキス": { "normalized": "shrimp extract" },
+
+  "卵白": { "normalized": "egg white" },
+  "卵黄": { "normalized": "egg yolk" },
+  "全卵": { "normalized": "whole egg" },
+
+  "牛肉": { "normalized": "beef" },
+  "豚肉": { "normalized": "pork" },
+  "鶏肉": { "normalized": "chicken" },
+  "牛脂": { "normalized": "beef fat" },
+  "豚脂": { "normalized": "pork fat" },
+  "鶏脂": { "normalized": "chicken fat" },
+
+  "ゼラチン": { "normalized": "gelatin" },
+  "豚由来ゼラチン": { "normalized": "gelatin derived from pork" },
+  "牛由来ゼラチン": { "normalized": "gelatin derived from beef" },
+
+  "小麦": { "normalized": "wheat" },
+  "小麦粉": { "normalized": "wheat flour" },
+  "小麦でん粉": { "normalized": "wheat starch" },
+  "でん粉": { "normalized": "starch" },
+  "米": { "normalized": "rice" },
+  "米粉": { "normalized": "rice flour" },
+  "とうもろこし": { "normalized": "corn" },
+  "コーンスターチ": { "normalized": "corn starch" },
+
+  "大豆": { "normalized": "soybean" },
+  "大豆たん白": { "normalized": "soy protein" },
+  "大豆油": { "normalized": "soybean oil" },
+
+  "乳": { "normalized": "milk" },
+  "脱脂粉乳": { "normalized": "skimmed milk powder" },
+  "全粉乳": { "normalized": "whole milk powder" },
+  "バター": { "normalized": "butter" },
+  "チーズ": { "normalized": "cheese" },
+  "ホエイ": { "normalized": "whey" },
+  "乳清たん白": { "normalized": "whey protein" },
+
+  "魚肉": { "normalized": "fish meat" },
+  "魚肉すり身": { "normalized": "surimi" },
+  "かつお節": { "normalized": "bonito flakes" },
+  "かつおエキス": { "normalized": "bonito extract" },
+  "いわし": { "normalized": "sardine" },
+  "さば": { "normalized": "mackerel" },
+  "あじ": { "normalized": "horse mackerel" },
+
+  "植物油": { "normalized": "vegetable oil" },
+  "菜種油": { "normalized": "rapeseed oil" },
+  "パーム油": { "normalized": "palm oil" },
+  "ごま油": { "normalized": "sesame oil" },
+
+  "砂糖": { "normalized": "sugar" },
+  "ぶどう糖": { "normalized": "glucose" },
+  "果糖": { "normalized": "fructose" },
+  "果糖ぶどう糖液糖": { "normalized": "high fructose corn syrup" },
+
+  "食塩": { "normalized": "salt" },
+  "しょう油": { "normalized": "soy sauce" },
+  "みそ": { "normalized": "miso" },
+  "醸造酢": { "normalized": "brewed vinegar" },
+
+  "みりん": { "normalized": "mirin" },
+  "みりん風調味料": { "normalized": "mirin-style seasoning" },
+  "酒精": { "normalized": "alcohol" },
+
+  "かつおだし": { "normalized": "bonito stock" },
+  "こんぶ": { "normalized": "kelp" },
+  "こんぶエキス": { "normalized": "kelp extract" },
+
+  "魚介エキス": { "normalized": "seafood extract" },
+  "魚介パウダー": { "normalized": "seafood powder" },
+
+  "畜肉エキス": { "normalized": "meat extract" },
+  "チキンエキス": { "normalized": "chicken extract" },
+  "ポークエキス": { "normalized": "pork extract" },
+  "ビーフエキス": { "normalized": "beef extract" },
+
+  "ラード": { "normalized": "lard" },
+  "ショートニング": { "normalized": "shortening" },
+
+  "酵母エキス": { "normalized": "yeast extract" },
+  "調味エキス": { "normalized": "seasoning extract" },
+
+  "でん粉分解物": { "normalized": "starch hydrolysate" },
+  "デキストリン": { "normalized": "dextrin" },
+
+  "白だし": { "normalized": "white soup stock" },
+  "だし": { "normalized": "soup stock" },
+  "だしの素": { "normalized": "seasoning stock powder" },
+  "粉末だし": { "normalized": "powdered soup stock" },
+  "顆粒だし": { "normalized": "granulated soup stock" },
+
+  "さけ": { "normalized": "salmon" },
+  "さけフレーク": { "normalized": "salmon flakes" },
+  "たら": { "normalized": "cod" },
+  "ほたて": { "normalized": "scallop" },
+  "あさり": { "normalized": "clam" },
+
+  "ハム": { "normalized": "ham" },
+  "ソーセージ": { "normalized": "sausage" },
+  "ベーコン": { "normalized": "bacon" },
+  "ミートエキス": { "normalized": "meat extract" },
+  "チキンパウダー": { "normalized": "chicken powder" },
+
+  "動物油脂": { "normalized": "animal fat" },
+  "加工油脂": { "normalized": "processed fat" },
+  "マーガリン": { "normalized": "margarine" },
+  "バターオイル": { "normalized": "butter oil" },
+
+  "にんじん": { "normalized": "carrot" },
+  "じゃがいも": { "normalized": "potato" },
+  "じゃがいもでん粉": { "normalized": "potato starch" },
+  "キャベツ": { "normalized": "cabbage" },
+
+  "水あめ": { "normalized": "glucose syrup" },
+  "麦芽糖": { "normalized": "maltose" },
+
+  "香味油": { "normalized": "flavored oil" },
+  "香辛料": { "normalized": "spices" },
+  "香辛料抽出物": { "normalized": "spice extract" }
+}

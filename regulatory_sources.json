@@ -1,0 +1,26 @@
+[
+  {
+    "id": "FR1985_CRAB",
+    "title": "Food Regulations 1985",
+    "title_ja": "食品規則 1985年",
+    "article": "Regulation 360A",
+    "snippet_en": "All food containing crab or crab extract shall be labeled with the common name of the species of crab used.",
+    "snippet_ja": "かにまたはかにエキスを含むすべての食品は、使用されたかにの種類の一般名称を表示しなければならない。"
+  },
+  {
+    "id": "FA1983_ALLERGEN",
+    "title": "Food Act 1983",
+    "title_ja": "食品法 1983年",
+    "article": "Section 13B - Allergen labelling",
+    "snippet_en": "Any person who prepares or sells any food that contains common allergens, including crustaceans, must declare it on the label.",
+    "snippet_ja": "甲殻類を含む一般的なアレルゲンを含有する食品を調理または販売する者は、その旨をラベルに表示しなければならない。"
+  },
+  {
+    "id": "GENERAL_ALLERGEN",
+    "title": "General Allergen Guideline",
+    "title_ja": "一般アレルゲンガイドライン",
+    "article": "Guideline 2.1",
+    "snippet_en": "Wheat, as a major allergen, must be clearly indicated in the ingredient list.",
+    "snippet_ja": "主要アレルゲンとして、小麦は原材料リストに明確に表示されなければならない。"
+  }
+]

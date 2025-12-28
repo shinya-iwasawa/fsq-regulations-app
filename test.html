@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>輸出規制QA（UI確認）</title>
+<style>
+body { font-family: Meiryo, sans-serif; background:#f3f4f6; }
+.container { max-width:900px; margin:auto; padding:20px; }
+.card { background:#fff; padding:20px; border-radius:8px; margin-bottom:20px; }
+textarea, select, button { width:100%; margin-top:10px; padding:8px; }
+.result { border-top:1px solid #ddd; margin-top:15px; padding-top:15px; }
+.bad { color:red; }
+.warn { color:orange; }
+.ok { color:green; }
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<div class="card">
+<h2>輸出規制QAフォーム</h2>
+
+<label>対象国</label>
+<select>
+<option>マレーシア</option>
+<option>シンガポール</option>
+</select>
+
+<label>原材料</label>
+<textarea rows="6">
+魚肉（輸入）、卵白、でん粉、香料、トウガラシ色素
+</textarea>
+
+<button>一括判定（UIモック）</button>
+</div>
+
+<div class="card result">
+<h3>製品判定：<span class="bad">🔴 不可</span></h3>
+
+<ul>
+<li class="bad">唐辛子色素：不可</li>
+<li class="warn">卵：条件付き（使用量制限）</li>
+<li class="ok">でん粉：可</li>
+</ul>
+</div>
+
+</div>
+</body>
+</html>
